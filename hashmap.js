@@ -25,7 +25,7 @@ class Hashmap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
 
-        if (key !== undefined) {
+        if (bucket.key !== undefined) {
             bucket.value = value;
         } 
 
@@ -46,6 +46,25 @@ class Hashmap {
 
 
 
+    }
+
+    get(key) {
+
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
+
+        if (bucket.key === undefined) return null
+
+        if (bucket.key !== undefined) return bucket.value;
+        
+    }
+
+    has(key) {
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
+
+        if (bucket.key !== undefined) return true;
+        if (bucket.key === undefined) return false;
     }
 
 }
