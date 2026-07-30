@@ -67,5 +67,23 @@ class Hashmap {
         if (bucket.key === undefined) return false;
     }
 
+    remove(key) {
+
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
+
+        if (this.buckets[index] !== undefined) {
+            bucket.key = undefined;
+            return true;
+        } else {
+            return false;
+        }
+
+
+
+
+        
+    }
+
 }
 
