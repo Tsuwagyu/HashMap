@@ -6,8 +6,6 @@ class Hashmap {
         this.buckets = new Array(this.capacity);
     }
 
-    // hash func takes keys as input, key only important inside hash func
-
 
     hash(key) {
 
@@ -24,23 +22,31 @@ class Hashmap {
 
     set(key, value) {
 
-        // add or update key val pairs
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
 
-        let index = this.hash(key);
-        let bucket = this.buckets[index];
+        if (key !== undefined) {
+            bucket.value = value;
+        } 
 
         if (bucket === undefined) {
-            // create a bucket
 
-            this.buckets[index]= [];
-            bucket = this.buckets[index];
+            this.buckets[index] = {
+                key, 
+                value
+            }; 
 
-            let newKeyVal = {key, value};
+            return;
 
-            bucket.push(newKeyVal);
         }
 
-        
+        if (bucket.key === key) {
+            bucket.value = value;
+        }
+
+
 
     }
+
 }
+
