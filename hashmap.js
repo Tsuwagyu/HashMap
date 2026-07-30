@@ -85,5 +85,23 @@ class Hashmap {
         
     }
 
+    length() {
+
+        const bucketArr = this.buckets
+
+        let count = 0;
+
+        for (let i = 0; i < bucketArr.length; i++) {
+            if (bucketsArr[i].key !== undefined) {
+                count++;
+            } 
+        }
+        
+        return count;
+
+
+
+    }
+
 }
 
