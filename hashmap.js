@@ -1,4 +1,23 @@
-class Hashmap {
+class HashMapNode {
+    constructor(key, value) {
+        
+        this.key = key;
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+
+    constructor() {
+        this.head = null;
+    }
+}
+
+
+
+
+class HashMap {
 
     constructor(capacity = 16, loadFactor = 0.75) {
         this.capacity = capacity;
@@ -24,12 +43,11 @@ class Hashmap {
 
         const index = this.hash(key);
         const bucket = this.buckets[index];
-
-        if (bucket.key !== undefined) {
-            bucket.value = value;
-        } 
+        const bucketArr = this.buckets;
 
         if (bucket === undefined) {
+
+            const node = head;
 
             this.buckets[index] = {
                 key, 
@@ -42,6 +60,7 @@ class Hashmap {
 
         if (bucket.key === key) {
             bucket.value = value;
+            return;
         }
 
 
@@ -174,4 +193,6 @@ class Hashmap {
     }
 
 }
+
+export default HashMap;
 
