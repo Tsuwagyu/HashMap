@@ -114,14 +114,28 @@ class Hashmap {
                     this.remove(bucket.key);
                 }
 
-
-
-
-
             } 
         }
         
 
+
+
+    }
+
+    keys() {
+        
+        const keys = [];
+        const bucketArr = this.buckets;
+
+
+        for (let i = 0; i < bucketArr.length; i++) {
+            if (bucketArr[i] !== undefined && bucketArr[i].key !== undefined) {
+                const currentKey = bucketArr[i].key;
+                keys.push(currentKey);
+            } 
+        }
+
+        return keys;
 
 
     }
