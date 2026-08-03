@@ -108,7 +108,16 @@ class Hashmap {
 
         for (let i = 0; i < bucketArr.length; i++) {
             if (bucketsArr[i].key !== undefined) {
-                this.remove(bucketArr.key);
+                let bucket = bucketArr[i];
+
+                if (bucket !== undefined) {
+                    this.remove(bucket.key);
+                }
+
+
+
+
+
             } 
         }
         
