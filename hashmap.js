@@ -155,5 +155,23 @@ class Hashmap {
 
     }
 
+    entries() {
+        const keyVals = [];
+
+        for (let i = 0; i < bucketArr.length; i++) {
+            if (bucketArr[i] !== undefined && bucketArr[i].key !== undefined) {
+
+                const currentKeyValPair = [bucketArr[i].key, bucketArr[i].value];
+
+                keyVals.push(currentKeyValPair);
+
+            } 
+        }
+
+        return keyVals;
+
+
+    }
+
 }
 
