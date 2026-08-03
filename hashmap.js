@@ -72,8 +72,8 @@ class Hashmap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
 
-        if (this.buckets[index] !== undefined) {
-            bucket.key = undefined;
+        if (this.buckets[index] !== undefined && bucket.key === key) {
+            this.buckets[index] = undefined;
             return true;
         } else {
             return false;
@@ -84,7 +84,6 @@ class Hashmap {
 
         
     }
-
     length() {
 
         const bucketArr = this.buckets
@@ -98,6 +97,21 @@ class Hashmap {
         }
         
         return count;
+
+
+
+    }
+
+    clear() {
+
+        const bucketArr = this.buckets;
+
+        for (let i = 0; i < bucketArr.length; i++) {
+            if (bucketsArr[i].key !== undefined) {
+                this.remove(bucketArr.key);
+            } 
+        }
+        
 
 
 
