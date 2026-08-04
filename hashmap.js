@@ -42,6 +42,7 @@ class LinkedList {
     }
 
     find(key) {
+
         // go through list and return node with matching key
 
         if (this.head === null) {
@@ -64,7 +65,35 @@ class LinkedList {
 
     remove(key) {
 
-        // unlink node with that key and report if removal is done
+        if (this.head === null) {
+            return false;
+        }
+
+        // head has no previous node so remove it by changing this.head to the next node
+        if (this.head.key === key) {
+            this.head = this.head.next;
+            return true;
+
+        }
+
+        let previousNode = this.head;
+        let currentNode = this.head.next;
+
+        // if node exists && keys match, previousNode skip currentNode and point to whatever comes after it then return true
+        while (currentNode !== null) {
+            if (currentNode.key === key) {
+                previousNode.next = currentNode.next; // skip over currentNode to remove from linked list
+                return true; // true bc we found key
+            }
+
+            // no match found > both tracking refs move forward by 1 node: previousNode becomes current node, currentNode becomes following node
+            previousNode = currentNode; 
+            currentNode = currentNode.next;
+
+        }
+        
+
+        return false;
 
 
 
@@ -72,6 +101,12 @@ class LinkedList {
 
     isEmpty() {
         // check if list has no nodes 
+
+        if (this.head === null) {
+            return true;
+        }
+
+        return false;
     }
 
     
