@@ -43,10 +43,31 @@ class LinkedList {
 
     find(key) {
         // go through list and return node with matching key
+
+        if (this.head === null) {
+            return undefined;
+        }
+
+        let currentNode = this.head;
+
+        while (currentNode !== null) {
+
+            if (currentNode.key === key) {
+                return currentNode;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return null;
     }
 
     remove(key) {
+
         // unlink node with that key and report if removal is done
+
+
+
     }
 
     isEmpty() {
