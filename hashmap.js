@@ -24,12 +24,9 @@ class LinkedList {
             this.head = newNode;
             return;
         }
-
-
         let currentNode = this.head;
-        const nodeNext = currentNode.next;
 
-        while (currentNode !== null) {
+        while (currentNode.next !== null) {
             currentNode = currentNode.next;
         }
 
@@ -46,7 +43,7 @@ class LinkedList {
         // go through list and return node with matching key
 
         if (this.head === null) {
-            return undefined;
+            return null;
         }
 
         let currentNode = this.head;
@@ -100,7 +97,6 @@ class LinkedList {
     }
 
     isEmpty() {
-        // check if list has no nodes 
 
         if (this.head === null) {
             return true;
