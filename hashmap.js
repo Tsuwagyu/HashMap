@@ -1,6 +1,9 @@
+
+
 class HashMapNode {
+
     constructor(key, value) {
-        
+
         this.key = key;
         this.value = value;
         this.next = null;
@@ -12,6 +15,45 @@ class LinkedList {
     constructor() {
         this.head = null;
     }
+
+    append(key, value) {
+
+        const newNode = new HashMapNode(key, value);
+
+        if (this.head === null) {
+            this.head = newNode;
+            return;
+        }
+
+
+        let currentNode = this.head;
+        const nodeNext = currentNode.next;
+
+        while (currentNode !== null) {
+            currentNode = currentNode.next;
+        }
+
+        currentNode.next = newNode;
+        
+
+
+
+        
+    }
+
+    find(key) {
+        // go through list and return node with matching key
+    }
+
+    remove(key) {
+        // unlink node with that key and report if removal is done
+    }
+
+    isEmpty() {
+        // check if list has no nodes 
+    }
+
+    
 }
 
 
