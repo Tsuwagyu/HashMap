@@ -218,12 +218,19 @@ class HashMap {
 
         const bucketArr = this.buckets
 
+        // return number of stored keys in the hashmap
+
+        // where are the keys stored now? in the buckets nodes
+
+        let currentNode = bucket.head;
+
         let count = 0;
 
-        for (let i = 0; i < bucketArr.length; i++) {
-            if (bucketsArr[i].key !== undefined) {
-                count++;
-            } 
+        for (let i = 0; i < bucketArr; i++) {
+            while (currentNode.next !== null) {
+                count++
+                currentNode = currentNode.next;
+            }
         }
         
         return count;
