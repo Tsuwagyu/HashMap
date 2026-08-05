@@ -290,10 +290,20 @@ class HashMap {
         const bucketArr = this.buckets;
 
         for (let i = 0; i < bucketArr.length; i++) {
-            if (bucketArr[i] !== undefined && bucketArr[i].key !== undefined) {
-                const currentValue = bucketArr[i].value;
-                values.push(currentValue);
-            } 
+            
+            const bucket = bucketArr[i];
+            if (bucket === undefined) continue;
+
+            let currentNode = bucket.head;
+
+            while (currentNode !== null) {
+            
+                values.push(currentNode.value);
+
+                currentNode = currentNode.next;
+            
+            }
+            
         }
 
         return values;
