@@ -251,7 +251,7 @@ class HashMap {
     clear() {
 
         this.buckets = new Array(this.capacity);
-        
+
     }
 
     keys() {
@@ -259,15 +259,28 @@ class HashMap {
         const keys = [];
         const bucketArr = this.buckets;
 
+        // return array with all keys in hashmap
+
+        let bucket;
 
         for (let i = 0; i < bucketArr.length; i++) {
-            if (bucketArr[i] !== undefined && bucketArr[i].key !== undefined) {
-                const currentKey = bucketArr[i].key;
-                keys.push(currentKey);
-            } 
+            
+            bucket = bucketArr[i];
+            if (bucket === undefined) continue;
+            ;
+            let currentNode = bucket.head;
+
+            while (currentNode !== null) {
+            
+                keys.push(currentNode.key);
+
+                currentNode = currentNode.next;
+            
+            }
+            
         }
 
-        return keys;
+        return keys
 
 
     }
