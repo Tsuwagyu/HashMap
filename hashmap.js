@@ -222,16 +222,25 @@ class HashMap {
 
         // where are the keys stored now? in the buckets nodes
 
-        let currentNode = bucket.head;
+        
+        let bucket;
 
         let count = 0;
 
-        for (let i = 0; i < bucketArr; i++) {
-            while (currentNode.next !== null) {
+        for (let i = 0; i < bucketArr.length; i++) {
+            
+            bucket = bucketArr[i];
+
+            if (bucket === undefined) continue;
+
+            let currentNode = bucket.head;
+
+            while (currentNode !== null) {
                 count++
                 currentNode = currentNode.next;
             }
         }
+
         
         return count;
 
