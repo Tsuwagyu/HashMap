@@ -139,19 +139,25 @@ class HashMap {
         const bucket = this.buckets[index];
         const bucketArr = this.buckets;
 
+        // if key exists, overwrite it
+
         if (bucket === undefined) {
 
             const newList = new LinkedList();
             newList.append(key, value);
+
+            // store newly created linked list at the bucket where this key belongs
             this.buckets[index] = newList;
 
+            // stop set() bc insertion is done
             return;
 
         }
 
-        if (bucket.key === key) {
-            bucket.value = value;
-            return;
+        const node = bucket.find(key);
+
+        if (node === null) {
+            bucket.append(key, value)
         }
 
 
@@ -162,14 +168,19 @@ class HashMap {
 
         const index = this.hash(key);
         const bucket = this.buckets[index];
+        // node stores the entire node which contains the key
 
-        const node = bucket.find(key);
+        if (bucket === undefined) return null
 
-        if (bucket.key === undefined) return null
+        // take in the key argument > return value stored in the key
 
-        if (node === null) return null;
+        const nodeWithKey = bucket.find(key);
 
-        return node.value;
+        if (nodeWithKey === null) {
+            return null;
+        } else {
+            return nodeWithKey.value;
+        }
         
     }
 
