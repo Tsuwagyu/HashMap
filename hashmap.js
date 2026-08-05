@@ -312,21 +312,31 @@ class HashMap {
 
     entries() {
         const keyVals = [];
+        const bucketArr = this.buckets;
 
         for (let i = 0; i < bucketArr.length; i++) {
-            if (bucketArr[i] !== undefined && bucketArr[i].key !== undefined) {
+            
+            const bucket = bucketArr[i];
+            if (bucket === undefined) continue;
+            let currentNode = bucket.head;
 
-                const currentKeyValPair = [bucketArr[i].key, bucketArr[i].value];
 
-                keyVals.push(currentKeyValPair);
 
-            } 
+            while (currentNode !== null) {
+
+                keyVals.push([currentNode.key, currentNode.value]);
+                currentNode = currentNode.next;
+                
+            }
+            
         }
 
         return keyVals;
 
-
     }
+
+
+    
 
 }
 
