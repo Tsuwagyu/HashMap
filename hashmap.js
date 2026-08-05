@@ -250,22 +250,8 @@ class HashMap {
 
     clear() {
 
-        const bucketArr = this.buckets;
-
-        for (let i = 0; i < bucketArr.length; i++) {
-            if (bucketsArr[i].key !== undefined) {
-                let bucket = bucketArr[i];
-
-                if (bucket !== undefined) {
-                    this.remove(bucket.key);
-                }
-
-            } 
-        }
+        this.buckets = new Array(this.capacity);
         
-
-
-
     }
 
     keys() {
