@@ -40,7 +40,7 @@ class LinkedList {
 
     find(key) {
 
-        // go through list and return node with matching key
+        // go through list and return entire node with matching key
 
         if (this.head === null) {
             return null;
@@ -141,12 +141,9 @@ class HashMap {
 
         if (bucket === undefined) {
 
-            const node = head;
-
-            this.buckets[index] = {
-                key, 
-                value
-            }; 
+            const newList = new LinkedList();
+            newList.append(key, value);
+            this.buckets[index] = newList;
 
             return;
 
@@ -166,9 +163,13 @@ class HashMap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
 
+        const node = bucket.find(key);
+
         if (bucket.key === undefined) return null
 
-        if (bucket.key !== undefined) return bucket.value;
+        if (node === null) return null;
+
+        return node.value;
         
     }
 
@@ -176,8 +177,11 @@ class HashMap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
 
-        if (bucket.key !== undefined) return true;
-        if (bucket.key === undefined) return false;
+        if (bucket === undefined) return false;
+        
+        const node = bucket.find(key);
+
+        return node !== null; // boolean expression will either give true or false
     }
 
     remove(key) {
@@ -185,16 +189,18 @@ class HashMap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
 
-        if (this.buckets[index] !== undefined && bucket.key === key) {
-            this.buckets[index] = undefined;
-            return true;
-        } else {
+        if (bucket === undefined) return false;
+
+        const removed = bucket.remove(key);
+
+        if (removed === false) {
             return false;
         }
-
-
-
-
+        if (bucket.isEmpty()) {
+            this.buckets[index] = undefined;
+        }
+        
+        return true;
         
     }
     length() {
