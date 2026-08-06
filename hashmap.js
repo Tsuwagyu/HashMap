@@ -353,6 +353,36 @@ class HashMap {
 
     }
 
+    rehash() {
+
+        const currentEntries = this.entries();
+        const entryCount = currentEntries.length;
+
+        if (entryCount > this.capacity * this.loadFactor) {
+
+            // double its capacity
+            this.capacity *= 2;
+            this.buckets = new Array(this.capacity);
+
+            // take currentEntries loop over it
+
+            for (let i = 0; i < currentEntries.length; i++) {
+
+                // calculate new bucket positions using a new hash function for the doubled capacity
+                
+
+                //entries returns [key, value] on each iteration we store the key and value
+                const key = currentEntries[i][0];
+                const value = currentEntries[i][1];
+
+                this.set(key, value);
+
+
+
+            }
+        }
+    }
+
 
     
 
