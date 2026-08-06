@@ -152,7 +152,13 @@ class HashMap {
             // store newly created linked list at the bucket where this key belongs
             this.buckets[index] = newList;
 
+            if (this.length() / this.capacity > this.loadFactor) {
+                this.rehash();
+            }
+        
+
             // stop set() bc insertion is done
+
             return;
 
         }
@@ -160,17 +166,17 @@ class HashMap {
         const node = bucket.find(key);
 
         if (node === null) {
-            bucket.append(key, value)
-        } 
-
-        if (this.length() / this.capacity > this.loadFactor === true) {
-            this.rehash();
+            bucket.append(key, value);
+            
+            if (this.length() / this.capacity > this.loadFactor) {
+                this.rehash();
+            }
+            
         }
         
         else {
             node.value = value;
         }
-
 
 
     }
@@ -291,7 +297,7 @@ class HashMap {
             
             bucket = bucketArr[i];
             if (bucket === undefined) continue;
-            ;
+        
             let currentNode = bucket.head;
 
             while (currentNode !== null) {
@@ -362,7 +368,6 @@ class HashMap {
     rehash() {
 
         const currentEntries = this.entries();
-        const entryCount = currentEntries.length;
 
 
         // double its capacity
@@ -373,7 +378,7 @@ class HashMap {
 
         for (let i = 0; i < currentEntries.length; i++) {
 
-            // calculate new bucket positions using a new hash function for the doubled capacity
+            // hash method reused with new capacity
                 
 
             //entries returns [key, value] on each iteration we store the key and value
