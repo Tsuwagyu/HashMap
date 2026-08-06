@@ -212,11 +212,11 @@ class HashMap {
     remove(key) {
 
         const index = this.hash(key);
-        const bucket = this.buckets[index];
 
         if (index < 0 || index >= this.buckets.length) {
-            throw new Error("Trying to access index out of bounds");
+         throw new Error("Trying to access index out of bounds");
         }
+        const bucket = this.buckets[index];
 
 
         if (bucket === undefined) return false;
