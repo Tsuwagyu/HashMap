@@ -136,8 +136,11 @@ class HashMap {
     set(key, value) {
 
         const index = this.hash(key);
+
+        if (index < 0 || index >= this.buckets.length) {
+         throw new Error("Trying to access index out of bounds");
+        }
         const bucket = this.buckets[index];
-        const bucketArr = this.buckets;
 
         // if key exists, overwrite it
 
@@ -158,6 +161,8 @@ class HashMap {
 
         if (node === null) {
             bucket.append(key, value)
+        } else {
+            node.value = value;
         }
 
 
@@ -167,6 +172,10 @@ class HashMap {
     get(key) {
 
         const index = this.hash(key);
+
+        if (index < 0 || index >= this.buckets.length) {
+         throw new Error("Trying to access index out of bounds");
+        }
         const bucket = this.buckets[index];
         // node stores the entire node which contains the key
 
@@ -185,7 +194,12 @@ class HashMap {
     }
 
     has(key) {
+        const bucketArr = this.buckets;
         const index = this.hash(key);
+
+        if (index < 0 || index >= bucketArr.length) {
+            throw new Error("Trying to access index out of bounds");
+        }
         const bucket = this.buckets[index];
 
         if (bucket === undefined) return false;
@@ -199,6 +213,11 @@ class HashMap {
 
         const index = this.hash(key);
         const bucket = this.buckets[index];
+
+        if (index < 0 || index >= this.buckets.length) {
+            throw new Error("Trying to access index out of bounds");
+        }
+
 
         if (bucket === undefined) return false;
 
@@ -217,7 +236,6 @@ class HashMap {
     length() {
 
         const bucketArr = this.buckets
-
         // return number of stored keys in the hashmap
 
         // where are the keys stored now? in the buckets nodes
