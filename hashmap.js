@@ -161,7 +161,13 @@ class HashMap {
 
         if (node === null) {
             bucket.append(key, value)
-        } else {
+        } 
+
+        if (this.length() / this.capacity > this.loadFactor === true) {
+            this.rehash();
+        }
+        
+        else {
             node.value = value;
         }
 
@@ -358,28 +364,26 @@ class HashMap {
         const currentEntries = this.entries();
         const entryCount = currentEntries.length;
 
-        if (entryCount > this.capacity * this.loadFactor) {
 
-            // double its capacity
-            this.capacity *= 2;
-            this.buckets = new Array(this.capacity);
+        // double its capacity
+        this.capacity *= 2;
+        this.buckets = new Array(this.capacity);
 
-            // take currentEntries loop over it
+        // take currentEntries loop over it
 
-            for (let i = 0; i < currentEntries.length; i++) {
+        for (let i = 0; i < currentEntries.length; i++) {
 
-                // calculate new bucket positions using a new hash function for the doubled capacity
+            // calculate new bucket positions using a new hash function for the doubled capacity
                 
 
-                //entries returns [key, value] on each iteration we store the key and value
-                const key = currentEntries[i][0];
-                const value = currentEntries[i][1];
+            //entries returns [key, value] on each iteration we store the key and value
+            const key = currentEntries[i][0];
+            const value = currentEntries[i][1];
 
-                this.set(key, value);
+            this.set(key, value);
 
 
 
-            }
         }
     }
 
